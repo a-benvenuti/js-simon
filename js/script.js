@@ -27,8 +27,9 @@ function inArray(array, elemento) {
 //--------------------fine DELLE FUNZIONI------------------------
 // GENERO L'ARRAY CONTENENTE I NUMERI DA MEMORIZZARE (univoci)
 var arrayNumeriRandom = [];
+var numeroRandom;
 while (arrayNumeriRandom.length < 5) {
-  var numeroRandom = random(1, 100);
+  numeroRandom = random(1, 100);
   if (inArray(arrayNumeriRandom, numeroRandom) == false) {
     arrayNumeriRandom.push(numeroRandom);
   }
@@ -36,16 +37,22 @@ while (arrayNumeriRandom.length < 5) {
 alert("I numeri da memorizzare, sono: " + arrayNumeriRandom);
 
 // CREO LA TIMING FUNCTION CHE DOPO 30sec CHIEDE TRAMITE PROMPT I NUMERI ALL'UTENTE
+var variabileStampPunteggio = document.getElementById('stamp_punteggio');
+var arrayNumeriUtente = [];
+var numeroUtente;
 setTimeout(function(){
-
-  var arrayNumeriUtente = [];
-  var numeroUtente;
   for (var i = 1; i < 6; i++) {
     numeroUtente = parseInt(prompt("inserisci il " + i + "°" + "numero che ricordi:"));
     if (inArray(arrayNumeriRandom, numeroUtente) == true) {
       arrayNumeriUtente.push(numeroUtente);
     }
   }
-  alert("Hai memorizzato " + arrayNumeriUtente.length + " numeri, esattamente:" + arrayNumeriUtente);
+  if (arrayNumeriUtente.length == 5) {
+    variabileStampPunteggio.innerHTML = "COMPLIMENTI! Ti sei ricordato tutti e 5 i numeri";
+  } else if (arrayNumeriUtente.length == 0) {
+    variabileStampPunteggio.innerHTML = "MI DISPIACE! Non ti sei ricordato alcun numero";
+  } else {
+    variabileStampPunteggio.innerHTML = "Hai memorizzato " + arrayNumeriUtente.length + " numeri, esattamente: " + arrayNumeriUtente;
+  }
 
 }, 30000);
