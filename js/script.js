@@ -33,5 +33,19 @@ while (arrayNumeriRandom.length < 5) {
     arrayNumeriRandom.push(numeroRandom);
   }
 }
-console.log(arrayNumeriRandom);
 alert("I numeri da memorizzare, sono: " + arrayNumeriRandom);
+
+// CREO LA TIMING FUNCTION CHE DOPO 30sec CHIEDE TRAMITE PROMPT I NUMERI ALL'UTENTE
+setTimeout(function(){
+
+  var arrayNumeriUtente = [];
+  var numeroUtente;
+  for (var i = 1; i < 6; i++) {
+    numeroUtente = parseInt(prompt("inserisci il " + i + "°" + "numero che ricordi:"));
+    if (inArray(arrayNumeriRandom, numeroUtente) == true) {
+      arrayNumeriUtente.push(numeroUtente);
+    }
+  }
+  alert("Hai memorizzato " + arrayNumeriUtente.length + " numeri, esattamente:" + arrayNumeriUtente);
+
+}, 30000);
